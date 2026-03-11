@@ -1,0 +1,270 @@
+:root {
+  --bg: #ebe1d3;
+  --paper: #f4ede1;
+  --dark: #3c2b24;
+  --gold: #d6be76;
+  --text: #2f2a26;
+  --muted: #6f6762;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header */
+.topbar {
+  background: var(--paper);
+  border-bottom: 1px solid #ddd3c7;
+}
+
+.site-logo {
+  padding: 0.5rem 4% 0.4rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.site-logo img {
+  width: clamp(5rem, 12vw, 7.5rem);
+}
+
+.navrow {
+  background: var(--dark);
+  padding: 0.75rem 0;
+}
+
+.navrow ul {
+  width: min(92%, 70rem);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.navrow a {
+  display: inline-block;
+  color: #f7f5f2;
+  border: none;
+  border-radius: 0.45rem;
+  padding: 0.55rem 0.95rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.navrow a:hover {
+  color: var(--gold);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Main */
+main {
+  width: min(92%, 70rem);
+  margin: 1.8rem auto 2.2rem;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  color: var(--dark);
+}
+
+section {
+  background: var(--paper);
+  border-radius: 0.8rem;
+  padding: 1rem 1.25rem;
+}
+
+.banner {
+  margin-top: 1.25rem;
+}
+
+.banner img {
+  width: 100%;
+  height: clamp(12rem, 35vw, 20rem);
+  object-fit: cover;
+  border-radius: 0.8rem;
+}
+
+.main_table {
+  background: var(--paper);
+  border-radius: 0.8rem;
+  overflow: hidden;
+}
+
+.main_table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.main_table caption {
+  text-align: center;
+  padding: 1.05rem 1rem;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.2;
+  color: var(--dark);
+}
+
+.main_table th {
+  background: var(--dark);
+  color: #fff;
+  text-align: left;
+  padding: 0.9rem 1rem;
+}
+
+.main_table td {
+  border-top: 1px solid #e5ddd3;
+  padding: 0.85rem 1rem;
+  vertical-align: top;
+}
+
+.side-list {
+  background: var(--paper);
+  border-radius: 0.8rem;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.side-list p {
+  margin: 0 0 0.6rem;
+  font-weight: 600;
+  color: var(--dark);
+  max-width: 16ch;
+  line-height: 1.35;
+}
+
+.side-list ol {
+  margin: 0;
+  padding-left: 1.3rem;
+}
+
+.side-list li + li {
+  margin-top: 0.4rem;
+}
+
+.side-list a {
+  color: #1f5f8f;
+}
+
+.side-list a:hover {
+  text-decoration: underline;
+}
+
+.content-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.content-row .main_table {
+  flex: 1 1 74%;
+}
+
+.content-row .side-list {
+  flex: 0 0 24%;
+}
+
+/* Footer */
+footer {
+  background: var(--dark);
+  color: #f7f5f2;
+  margin-top: 2rem;
+}
+
+.footer-top {
+  width: min(70%, 70rem);
+  margin: 0 auto;
+  padding: 1.4rem 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-links li + li {
+  margin-top: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-social img {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: center;
+  color: #d5cec8;
+  font-size: 0.9rem;
+  padding: 0.9rem 4% 1.1rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 48rem) {
+  main {
+    width: 94%;
+  }
+
+  .content-row {
+    flex-direction: column;
+  }
+
+  .content-row .main_table,
+  .content-row .side-list {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .side-list p {
+    max-width: none;
+  }
+
+  .footer-top {
+    width: 90%;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-social {
+    flex-direction: row;
+  }
+}
+
