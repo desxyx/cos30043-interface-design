@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwinTech</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- <style>
+        .grid-demo {
+            background-color: #e7f1ff;
+            : 1px solid #b6d4fe;
+            padding: 12px;
+            margin-bottom: 10px;
+            text-align: center;
+            -radius: 4px;
+        }
+    </style> -->
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="site-logo">
+            <img src="./assets/logo/logo.png" alt="Site Logo">
+        </div>
+
+        <nav class="navrow">
+            <ul>
+                <li>
+                    <a href="https://www.swinburne.edu.au/" target="_blank" rel="noopener noreferrer">Swinburne</a>
+                </li>
+                <li>
+                    <a href="https://www.melbourne.vic.gov.au/" target="_blank" rel="noopener noreferrer">Melbourne</a>
+                </li>
+                <li>
+                    <a href="https://www.vic.gov.au/" target="_blank" rel="noopener noreferrer">Victoria</a>
+                </li>
+                <li>
+                    <a href="https://my.gov.au/" target="_blank" rel="noopener noreferrer">Australia</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main m-5">
+        <div id="app" class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h1 class="mb-3">Lab 03 - Event Search and Registration</h1>
+                    <p class="text-muted">Search events and register for your preferred session.</p>
+                </div>
+            </div>
+
+
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title mb-4">1. Event Information</h2>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-4">
+                                    <label for="searchId" class="form-label">Search by Event ID</label>
+                                    <input type="text" id="searchId" class="form-control" v-model="search.eventid"
+                                        placeholder="e.g. EVT10001">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="searchName" class="form-label">Search by Event Name</label>
+                                    <input type="text" id="searchName" class="form-control" v-model="search.eventname"
+                                        placeholder="e.g. AI">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="searchDuration" class="form-label">Search by Duration</label>
+                                    <input type="text" id="searchDuration" class="form-control"
+                                        v-model="search.durationhour" placeholder="e.g. 6">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label d-block">Filter by Category</label>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="all" value="All"
+                                        v-model="search.category">
+                                    <label class="form-check-label" for="all">All</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="technology" value="Technology"
+                                        v-model="search.category">
+                                    <label class="form-check-label" for="technology">Technology</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="business" value="Business"
+                                        v-model="search.category">
+                                    <label class="form-check-label" for="business">Business</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="marketing" value="Marketing"
+                                        v-model="search.category">
+                                    <label class="form-check-label" for="marketing">Marketing</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="finance" value="Finance"
+                                        v-model="search.category">
+                                    <label class="form-check-label" for="finance">Finance</label>
+                                </div>
+                            </div>
+
+                            <div v-if="eventsLoadError" class="alert alert-warning" role="alert">
+                                {{ eventsLoadError }}
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover align-middle">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Event ID</th>
+                                            <th>Event Name</th>
+                                            <th>Category</th>
+                                            <th>Duration (Hours)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="event in filteredEvents" :key="event.eventid">
+                                            <td>{{ event.eventid }}</td>
+                                            <td>{{ event.eventname }}</td>
+                                            <td>{{ event.category }}</td>
+                                            <td>{{ event.durationhour }}</td>
+                                        </tr>
+                                        <tr v-if="filteredEvents.length === 0">
+                                            <td colspan="4" class="text-center">No matching events found.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title mb-4">2. Registration Form</h2>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" id="username" class="form-control"
+                                        v-model="registration.username" placeholder="Enter your username">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" id="password" class="form-control"
+                                        v-model="registration.password" placeholder="Enter password">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                    <input type="password" id="confirmPassword" class="form-control"
+                                        v-model="registration.confirmPassword" placeholder="Confirm password">
+                                </div>
+
+                                <div class="col-md-6 d-flex align-items-end">
+                                    <p v-if="showPasswordMessage" class="text-danger mb-2">
+                                        Passwords do not match.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <label class="form-label d-block">Select Event Category</label>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="regTechnology" value="Technology"
+                                        v-model="registration.category">
+                                    <label class="form-check-label" for="regTechnology">Technology</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="regBusiness" value="Business"
+                                        v-model="registration.category">
+                                    <label class="form-check-label" for="regBusiness">Business</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="regMarketing" value="Marketing"
+                                        v-model="registration.category">
+                                    <label class="form-check-label" for="regMarketing">Marketing</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="regFinance" value="Finance"
+                                        v-model="registration.category">
+                                    <label class="form-check-label" for="regFinance">Finance</label>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 col-md-6">
+                                <label for="eventSelect" class="form-label">Select Event Name</label>
+                                <select id="eventSelect" class="form-select" v-model="registration.eventname">
+                                    <option value="">Please select an event</option>
+                                    <option v-for="event in categoryEvents" :key="event.eventid"
+                                        :value="event.eventname">
+                                        {{ event.eventname }}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mt-5 p-3">
+                                <h4>Summary</h4>
+                                <p class="mb-1"><strong>Username:</strong> {{ registration.username || 'Not selected yet' }}</p>
+                                <p class="mb-1"><strong>Selected category:</strong> {{ registration.category || 'Not selected yet' }}</p>
+                                <p class="mb-0"><strong>Selected event name:</strong> {{ registration.eventname || 'Not selected yet' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <a href="#"><img src="./assets/images/facebook.svg" alt="Facebook"></a>
+                <a href="#"><img src="./assets/images/github.svg" alt="GitHub"></a>
+                <a href="#"><img src="./assets/images/x.svg" alt="X"></a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>@swintech 2026</p>
+        </div>
+
+    </footer>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/vue.js"></script>
+<script src="./js/main.js"></script>
+
+</html>
