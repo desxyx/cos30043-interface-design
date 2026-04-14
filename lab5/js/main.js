@@ -1,4 +1,4 @@
-const {createApp} = Vue
+const { createApp } = Vue;
 
 const JobOverview = {
   template: `
@@ -6,7 +6,7 @@ const JobOverview = {
       <div class="card-body">
         <h2 class="h4 mb-3">Job Overview</h2>
         <p class="mb-3">
-          This section is built with Vue Router. Click the <strong>Overview</strong> link or any job ID on the left to display the related content on the right.
+          This section is built with Vue Router. Click the Overview link or any job ID on the left to display the related content on the right.
         </p>
 
         <div class="row g-3">
@@ -37,25 +37,27 @@ const JobOverview = {
       return this.$root.jobs.length;
     },
     totalCategories: function () {
-      return new Set(
-        this.$root.jobs.map(function (job) {
-          return job.category;
-        })
-      ).size;
+      const categories = this.$root.jobs.map(function (job) {
+        return job.category;
+      });
+
+      const uniqueCategories = new Set(categories);
+
+      return uniqueCategories.size;
     },
   },
-}
+};
 
 const JobDetail = {
   template: `
     <div>
-      <div v-if="filteredJobs.length > 0" class="card shadow-sm border-0">
+      <div v-if="filteredJobs.length > 0" class="card border-0">
         <div class="card-body" v-for="job in filteredJobs" v-bind:key="job.job_id">
           <h2 class="h4 mb-3">Job Detail: {{ job.job_id }}</h2>
 
           <div class="row g-3">
             <div class="col-md-6">
-              <div class="border rounded p-3 h-100 bg-light">
+              <div class="border p-3 h-100 bg-light">
                 <p class="mb-2"><strong>Title:</strong> {{ job.job_title }}</p>
                 <p class="mb-2"><strong>Category:</strong> {{ job.category }}</p>
                 <p class="mb-2"><strong>Company:</strong> {{ job.company }}</p>
@@ -67,7 +69,7 @@ const JobDetail = {
             </div>
 
             <div class="col-md-6">
-              <div class="border rounded p-3 h-100 bg-light">
+              <div class="border p-3 h-100 bg-light">
                 <h3 class="h6">Job Description</h3>
                 <p class="mb-3">{{ job.job_description }}</p>
                 <p class="mb-2"><strong>Supervisor:</strong> {{ job.supervisor }}</p>
@@ -79,7 +81,7 @@ const JobDetail = {
             </div>
 
             <div class="col-md-6">
-              <div class="border rounded p-3 h-100">
+              <div class="border p-3 h-100">
                 <h3 class="h6">Required Skills</h3>
                 <ul class="mb-0">
                   <li v-for="item in job.required_skills" :key="item">{{ item }}</li>
@@ -88,7 +90,7 @@ const JobDetail = {
             </div>
 
             <div class="col-md-6">
-              <div class="border rounded p-3 h-100">
+              <div class="border p-3 h-100">
                 <h3 class="h6">Preferred Qualifications</h3>
                 <ul class="mb-0">
                   <li v-for="item in job.preferred_qualifications" :key="item">{{ item }}</li>
@@ -97,7 +99,7 @@ const JobDetail = {
             </div>
 
             <div class="col-12">
-              <div class="border rounded p-3">
+              <div class="border p-3">
                 <h3 class="h6">Tags</h3>
                 <div class="d-flex flex-wrap gap-2">
                   <span
@@ -122,11 +124,11 @@ const JobDetail = {
   computed: {
     filteredJobs: function () {
       return this.$root.jobs.filter((job) =>
-        job.job_id.toLowerCase().match(this.$route.params.id.toLowerCase())
+        job.job_id.toLowerCase().match(this.$route.params.id.toLowerCase()),
       );
     },
   },
-}
+};
 
 const JobList = {
   props: ["jobs"],
@@ -150,19 +152,28 @@ const JobList = {
       </div>
     </div>
   `,
-}
+};
 
 const ToDoList = {
   data: function () {
     return {
       newTask: "",
       tasks: [
-        { id: 1, name: "Prepare application documents", priority: "Low Priority" },
-        { id: 2, name: "Review selected job details", priority: "High Priority" },
+        {
+          id: 1,
+          name: "Update resume and LinkedIn profile",
+          priority: "Low Priority",
+        },
+        {
+          id: 2,
+          name: "Review AI research Assistant job",
+          priority: "High Priority",
+        },
       ],
       nextId: 3,
     };
   },
+
   methods: {
     addTask: function () {
       const taskName = this.newTask.trim();
@@ -201,7 +212,7 @@ const ToDoList = {
     },
   },
   template: `
-    <div class="card shadow-sm border-0 mt-4">
+    <div class="card mt-4">
       <div class="card-body">
         <h2 class="h4 mb-3">To-Do List</h2>
 
@@ -227,7 +238,7 @@ const ToDoList = {
             v-bind:key="task.id"
             class="list-group-item"
           >
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+            <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
               <span>{{ task.name }} ({{ task.priority }})</span>
               <div class="d-flex gap-2">
                 <button
@@ -251,7 +262,7 @@ const ToDoList = {
       </div>
     </div>
   `,
-}
+};
 
 const app = createApp({
   data: function () {
@@ -276,8 +287,7 @@ const app = createApp({
         const text = await response.text();
         this.jobs = JSON.parse(text);
       } catch (error) {
-        this.loadError =
-          "Unable to load job data. Please run the page from a local web server and check jobs.txt.";
+        this.loadError = "Unable to load job data. Please check jobs.txt.";
       } finally {
         this.isLoading = false;
       }
@@ -286,7 +296,7 @@ const app = createApp({
   created: function () {
     this.loadJobs();
   },
-})
+});
 
 const routes = [
   { path: "/", component: JobOverview },
@@ -296,7 +306,7 @@ const routes = [
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
   routes,
-})
+});
 
 app.component("job-list", JobList);
 app.component("to-do-list", ToDoList);

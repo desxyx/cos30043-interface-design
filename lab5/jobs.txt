@@ -3,7 +3,7 @@
     "job_id": "MLA101",
     "job_title": "Machine Learning Intern",
     "category": "AI",
-    "location": "Remote",
+    
     "employment_type": "Internship",
     "salary_range": "$25/hr",
     "job_level": "Entry-Level",
@@ -15,8 +15,9 @@
     "company": "Swinburne AI Lab",
     "supervisor": "Dr. Jane Doe",
     "positions_available": 2,
-    "start_date": "2025-05-01",
-    "tags": ["machine learning", "internship", "AI"]
+    "tags": ["machine learning", "internship", "AI"],
+    "start_date": "2025-05-01"
+    
   },
   {
     "job_id": "DSC202",

@@ -46,17 +46,6 @@
     <main class="container py-5">
         <div id="app">
             <div class="row g-4">
-                <div class="col-12">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body">
-                            <h1 class="h2 mb-3">Lab 05 Components and Router</h1>
-                            <p class="mb-0">
-                                This web application contains two sections: <strong>Job Explorer</strong> and
-                                <strong>To-Do List</strong>.
-                            </p>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col-lg-4">
                     <job-list v-bind:jobs="jobs"></job-list>
@@ -64,7 +53,7 @@
 
                 <div class="col-lg-8">
                     <div v-if="isLoading" class="alert alert-info mb-0">
-                        Loading jobs from jobs.txt...
+                        Loading jobs from jobs.txt
                     </div>
 
                     <div v-else-if="loadError" class="alert alert-danger mb-0">
