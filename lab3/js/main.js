@@ -132,7 +132,7 @@ Vue.createApp({
         eventid: "",
         eventname: "",
         durationhour: "",
-        category: "All",
+        category: "",
       },
 
       registration: {
