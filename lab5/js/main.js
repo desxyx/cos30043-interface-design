@@ -196,19 +196,32 @@ const ToDoList = {
         return task.id !== taskId;
       });
     },
+    // togglePriority: function (task) {
+    //   if (task.priority === "High Priority") {
+    //     task.priority = "Low Priority";
+    //   } else {
+    //     task.priority = "High Priority";
+    //   }
+    // },
+
     togglePriority: function (task) {
       if (task.priority === "High Priority") {
         task.priority = "Low Priority";
+      } else if (task.priority === "Low Priority") {
+        task.priority = "Medium Priority";
       } else {
         task.priority = "High Priority";
       }
     },
+
     buttonCaption: function (task) {
       if (task.priority === "High Priority") {
         return "Mark as Low Priority";
+      } else if (task.priority === "Low Priority") {
+        return "Mark as Medium Priority";
+      } else {
+        return "Mark as High Priority";
       }
-
-      return "Mark as High Priority";
     },
   },
   template: `
