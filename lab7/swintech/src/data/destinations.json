@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Mount Fuji",
+    "country": "Japan",
+    "description": "An iconic snow-capped stratovolcano and the highest peak in Japan, offering breathtaking sunrise views from the summit.",
+    "category": "Mountain"
+  },
+  {
+    "name": "Santorini",
+    "country": "Greece",
+    "description": "A stunning volcanic island known for its white-washed buildings, blue-domed churches, and crystal-clear Aegean Sea views.",
+    "category": "Ocean"
+  },
+  {
+    "name": "Bondi Beach",
+    "country": "Australia",
+    "description": "One of the world's most famous beaches, celebrated for its golden sands, surf culture, and vibrant coastal lifestyle.",
+    "category": "Beach"
+  },
+  {
+    "name": "Paris",
+    "country": "France",
+    "description": "The City of Light, famous for the Eiffel Tower, world-class cuisine, art museums, and romantic tree-lined boulevards.",
+    "category": "City"
+  },
+  {
+    "name": "Machu Picchu",
+    "country": "Peru",
+    "description": "A 15th-century Inca citadel set high in the Andes Mountains, widely regarded as one of the world's greatest archaeological sites.",
+    "category": "Mountain"
+  },
+  {
+    "name": "Maldives",
+    "country": "Maldives",
+    "description": "A tropical paradise of overwater bungalows, turquoise lagoons, and some of the world's most pristine coral reefs.",
+    "category": "Ocean"
+  },
+  {
+    "name": "Bali",
+    "country": "Indonesia",
+    "description": "Island of the Gods, known for its forested volcanic mountains, iconic rice paddies, spiritual temples, and lively beach resorts.",
+    "category": "Beach"
+  },
+  {
+    "name": "Tokyo",
+    "country": "Japan",
+    "description": "A dazzling metropolis where ultra-modern skyscrapers stand next to ancient temples, serving extraordinary food at every corner.",
+    "category": "City"
+  },
+  {
+    "name": "Swiss Alps",
+    "country": "Switzerland",
+    "description": "Europe's rooftop offering dramatic alpine scenery, world-class skiing, charming mountain villages, and pristine glaciers.",
+    "category": "Mountain"
+  },
+  {
+    "name": "Amalfi Coast",
+    "country": "Italy",
+    "description": "A stunning stretch of southern Italian coastline featuring dramatic cliffs, pastel-coloured fishing villages, and sparkling blue water.",
+    "category": "Ocean"
+  },
+  {
+    "name": "Miami Beach",
+    "country": "USA",
+    "description": "Famous for its Art Deco architecture, white sandy beaches, vibrant nightlife, and year-round warm Florida sunshine.",
+    "category": "Beach"
+  },
+  {
+    "name": "Barcelona",
+    "country": "Spain",
+    "description": "A captivating city blending Gaudí's surreal architecture, lively street culture, world-famous food markets, and Mediterranean beaches.",
+    "category": "City"
+  },
+  {
+    "name": "Himalayas",
+    "country": "Nepal",
+    "description": "Home to the world's highest peaks including Mount Everest, offering epic trekking routes and awe-inspiring Himalayan vistas.",
+    "category": "Mountain"
+  },
+  {
+    "name": "Great Barrier Reef",
+    "country": "Australia",
+    "description": "The world's largest coral reef system, stretching over 2,300 km and home to an extraordinary diversity of marine species.",
+    "category": "Ocean"
+  },
+  {
+    "name": "Phuket",
+    "country": "Thailand",
+    "description": "Thailand's largest island, renowned for its beautiful beaches, crystal-clear water, vibrant nightlife, and rich local culture.",
+    "category": "Beach"
+  },
+  {
+    "name": "New York",
+    "country": "USA",
+    "description": "The city that never sleeps — home to iconic landmarks like Times Square, Central Park, and the Statue of Liberty.",
+    "category": "City"
+  }
+]
